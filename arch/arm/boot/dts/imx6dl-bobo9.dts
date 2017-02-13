@@ -1,0 +1,30 @@
+/*
+ * Copyright (C) 2016 UBIQCONN TECHNOLOGY, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+
+#include "imx6dl.dtsi"
+#include "imx6qdl-bobo.dtsi"
+
+/ {
+	model = "Ubiqconn Bobo9 Board";
+	compatible = "uti,imx6dl-bobo9", "fsl,imx6dl";
+};
+
+&mxcfb1 {
+	status = "okay";
+};
+
+&lcd {
+	status = "okay";
+};
+
+&pxp {
+	status = "okay";
+};
+

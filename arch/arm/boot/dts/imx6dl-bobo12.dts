@@ -1,0 +1,80 @@
+/*
+ * Copyright (C) 2016 UBIQCONN TECHNOLOGY, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+
+#include "imx6dl.dtsi"
+#include "imx6qdl-bobo.dtsi"
+
+/ {
+	model = "Ubiqconn Bobo12 Board";
+	compatible = "uti,imx6dl-bobo12", "fsl,imx6dl";
+};
+
+&mxcfb1 {
+	disp_dev = "ldb";
+	interface_pix_fmt = "RGB24";
+	default_bpp = <16>;
+	int_clk = <0>;
+	late_init = <0>;
+	status = "okay";
+};
+
+&ldb {
+	status = "okay";
+	lvds-channel@0 {
+		fsl,data-mapping = "spwg";
+		fsl,data-width = <24>;
+		status = "okay";
+		crtc = "ipu1-di0";
+
+		display-timings {
+			native-mode = <&timing0>;
+			timing0: CTP-WXGA {
+				clock-frequency = <71100000>;
+				hactive = <1280>;
+				vactive = <800>;
+				hback-porch = <210>;			 
+				hfront-porch = <46>;
+       				vback-porch = <23>;
+       				vfront-porch = <22>;
+       				hsync-len = <40>;
+       				vsync-len = <20>;
+			};
+		};
+	};
+	
+	lvds-channel@1 {
+		fsl,data-mapping = "spwg";
+		fsl,data-width = <24>;
+		primary;
+		status = "okay";
+		crtc = "ipu1-di1";
+		vcc-gpio = <&gpio3 5 GPIO_ACTIVE_HIGH>;
+		vcc-powerup-delay-ms = <100>;
+		display-timings {
+			native-mode = <&timing1>;
+			timing1: CTP-WXGA {
+				clock-frequency = <71100000>;
+				hactive = <1280>;
+				vactive = <800>;
+				hback-porch = <210>;
+				hfront-porch = <46>;
+				vback-porch = <23>;
+				vfront-porch = <22>;
+				hsync-len = <40>;
+				vsync-len = <20>;
+			};
+		};
+	};
+};
+
+&pxp {
+	status = "okay";
+};
+
